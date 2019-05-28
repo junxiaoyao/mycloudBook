@@ -2,6 +2,7 @@ package com.jxy.studycloud.controllers;
 
 import com.jxy.studycloud.config.ServiceConfig;
 import com.jxy.studycloud.repository.EmpRepository;
+import com.jxy.studycloud.repository.LicenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +19,11 @@ public class TestController {
   @Autowired
   private ServiceConfig config;
 
-//  @Autowired
-//  private LicenseRepository licenseRepository;
   @Autowired
   private EmpRepository empRepository;
+  @Autowired
+  private LicenseRepository licenseRepository;
+
   @RequestMapping("/info")
   public String getInfo(){
     return config.getExampleProperty();
@@ -29,6 +31,10 @@ public class TestController {
   @RequestMapping("/getById")
   public Emp getById(Long id){
     return empRepository.findOne(id);
+  }
+  @RequestMapping("/getLicenseById")
+  public License getLicenseById(Long id){
+    return licenseRepository.findOne(id);
   }
 //  private LicenseService service;
 //  @RequestMapping("/info")
