@@ -20,7 +20,7 @@ public class TestController {
 
 //  @Autowired
 //  private LicenseRepository licenseRepository;
-
+  @Autowired
   private EmpRepository empRepository;
   @RequestMapping("/info")
   public String getInfo(){
