@@ -1,14 +1,57 @@
-example.property: "I AM IN THE DEFAULT"
-spring.jpa.database: "POSTGRESQL"
-spring.datasource.platform:  "postgres"
-spring.jpa.show-sql: "true"
-spring.database.driverClassName: "org.postgresql.Driver"
-spring.datasource.url: "jdbc:postgresql://database:5432/eagle_eye_local"
-spring.datasource.username: "postgres"
-spring.datasource.password: "{cipher}4788dfe1ccbe6485934aec2ffeddb06163ea3d616df5fd75be96aadd4df1da91"
-spring.datasource.testWhileIdle: "true"
-spring.datasource.validationQuery: "SELECT 1"
-spring.jpa.properties.hibernate.dialect: "org.hibernate.dialect.PostgreSQLDialect"
-redis.server: "redis"
-redis.port: "6379"
-signing.key: "345345fsdfsf5345"
+#example.property: "I AM IN THE DEFAULT"
+#spring.jpa.database: "POSTGRESQL"
+#spring.datasource.platform:  "postgres"
+#spring.jpa.show-sql: "true"
+#spring.database.driverClassName: "org.postgresql.Driver"
+#spring.datasource.url: "jdbc:postgresql://database:5432/eagle_eye_local"
+#spring.datasource.username: "postgres"
+#spring.datasource.password: "{cipher}4788dfe1ccbe6485934aec2ffeddb06163ea3d616df5fd75be96aadd4df1da91"
+#spring.datasource.testWhileIdle: "true"
+#spring.datasource.validationQuery: "SELECT 1"
+#spring.jpa.properties.hibernate.dialect: "org.hibernate.dialect.PostgreSQLDialect"
+#redis.server: "redis"
+#redis.port: "6379"
+#signing.key: "345345fsdfsf5345"
+server:
+  port: 8080
+#  ssl:
+#    key-store: classpath:config/baotian.club.jks
+#    key-store-password: BAOtiandi789
+#    key-store-type: jks
+#    key-alias: baotianclub
+spring:
+  thymeleaf:
+    cache: false
+  profiles:
+    active: dev
+  jpa:
+    show-sql: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://118.24.188.79:3306/myspring?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+  #context-path: "actuator" ###配置前缀
+example:
+  property: "I AM IN THE DEFAULT"
