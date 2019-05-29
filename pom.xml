@@ -26,6 +26,7 @@
     <module>licensing-service</module>
     <module>public_api</module>
     <module>configServer</module>
+    <module>eureka-server-port9001</module>
   </modules>
   <dependencyManagement>
 
