@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8002
 spring:
   application:
     name: licensingservice
@@ -18,7 +18,7 @@ management:
     enabled: false
 eureka:
   instance:
-    instance-id: licensing-service-8001
+    instance-id: licensing-service-8002
     prefer-ip-address: true
   client:
     register-with-eureka: true

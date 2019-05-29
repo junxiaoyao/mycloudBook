@@ -24,6 +24,7 @@
   </properties>
   <modules>
     <module>licensing-service</module>
+    <module>licensing-service-8002</module>
     <module>public_api</module>
     <module>configServer</module>
     <module>eureka-server-port9001</module>
