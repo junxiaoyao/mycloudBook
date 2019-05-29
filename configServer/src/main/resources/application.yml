@@ -26,16 +26,28 @@
 
 ####
 #Classpath and file-based solution
-####
-#####################文件系统配置
+#####################使用git配置
 server:
   port: 8888
 spring:
-  profiles:
-    active: native  #要使用文件系统存储配置，需要一native方式启动
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:config/licensingservice,
-                            classpath:config/organizationservice
+        encrypt:
+          enabled: false
+        git:
+          uri: https://github.com/junxiaoyao/mycloudConfigRepo.git
+          search-paths: licensingservice,organizationservice
+
+#####################文件系统配置
+#server:
+#  port: 8888
+#spring:
+#  profiles:
+#    active: native  #要使用文件系统存储配置，需要一native方式启动
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:config/licensingservice,
+#                            classpath:config/organizationservice

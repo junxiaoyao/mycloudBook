@@ -12,8 +12,8 @@
 #redis.server: "redis"
 #redis.port: "6379"
 #signing.key: "345345fsdfsf5345"
-server:
-  port: 8080
+#server:
+#  port: 8080
 #  ssl:
 #    key-store: classpath:config/baotian.club.jks
 #    key-store-password: BAOtiandi789
@@ -45,11 +45,11 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
     filters: stat
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
   security:
     enabled: false
   #context-path: "actuator" ###配置前缀
