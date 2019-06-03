@@ -1,14 +1,14 @@
 server:
-  port: 8001
+  port: 7001
 spring:
   application:
-    name: licensingservice
+    name: licensingconsumer
   profiles:
     active:
       default
-  cloud:
-    config:
-      uri: http://localhost:8888
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
 management:
   endpoints:
     web:
@@ -18,10 +18,10 @@ management:
     enabled: false
 eureka:
   instance:
-    instance-id: licensing-service-8001
+    instance-id: licensing-consumer-7001
     prefer-ip-address: true
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
     service-url:
       defaultZone: http://www.eureka9001.com:9001/eureka/,

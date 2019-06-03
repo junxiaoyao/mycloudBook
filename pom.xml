@@ -28,6 +28,9 @@
     <module>public_api</module>
     <module>configServer</module>
     <module>eureka-server-port9001</module>
+    <module>licensing-sonsumer-port7001</module>
+    <module>licensing-service-8003</module>
+    <module>emp-service-port6001</module>
   </modules>
   <dependencyManagement>
 

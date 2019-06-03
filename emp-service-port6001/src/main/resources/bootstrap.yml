@@ -1,8 +1,8 @@
 server:
-  port: 8001
+  port: 6001
 spring:
   application:
-    name: licensingservice
+    name: empservice
   profiles:
     active:
       default
@@ -18,7 +18,7 @@ management:
     enabled: false
 eureka:
   instance:
-    instance-id: licensing-service-8001
+    instance-id: empservice-service-6001
     prefer-ip-address: true
   client:
     register-with-eureka: true

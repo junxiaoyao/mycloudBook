@@ -1,14 +1,12 @@
 package com.jxy.studycloud.controllers;
-
-import com.jxy.studycloud.config.ServiceConfig;
-import com.jxy.studycloud.repository.EmpRepository;
-import com.jxy.studycloud.repository.LicenseRepository;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import  com.jxy.studycloud.services.*;
 import com.jxy.studycloud.model.*;
+import org.springframework.web.client.RestTemplate;
+
 /**
  * @description
  * @author: jxy
@@ -18,27 +16,22 @@ import com.jxy.studycloud.model.*;
 @RequestMapping("test")
 public class TestController {
   @Autowired
-  private ServiceConfig config;
-
-  @Autowired
-  private EmpRepository empRepository;
-  @Autowired
-  private LicenseRepository licenseRepository;
-
-  @RequestMapping("/info")
-  public String getInfo(){
-    return config.getExampleProperty();
-  }
+  private RestTemplate restTemplate;
+  private final static String SERVICE_URL_PREFIX="http://LICENSINGSERVICE";
   @RequestMapping("/getById")
   public Emp getById(Long id){
-    return empRepository.findOne(id);
+    HashMap<String,Object> map=new HashMap<>();
+    map.put("id",id);
+    return restTemplate.getForObject(SERVICE_URL_PREFIX+"/getById",Emp.class,map);
   }
   @RequestMapping("/getLicenseById")
   public License getLicenseById(Long id){
-    return licenseRepository.findOne(id);
+    HashMap<String,Object> map=new HashMap<>();
+    map.put("id",id);
+    return restTemplate.getForObject(SERVICE_URL_PREFIX+"/getLicenseById",License.class,map);
   }
   @RequestMapping("/getAllEmp")
   public List<Emp> getAllLicense(){
-    return empRepository.findAll();
+    return restTemplate.getForObject(SERVICE_URL_PREFIX+"/getAllEmp",List.class);
   }
 }
