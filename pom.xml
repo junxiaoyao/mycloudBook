@@ -31,6 +31,7 @@
     <module>licensing-sonsumer-port7001</module>
     <module>licensing-service-8003</module>
     <module>emp-service-port6001</module>
+    <module>consumer-discovery-7002</module>
   </modules>
   <dependencyManagement>
 

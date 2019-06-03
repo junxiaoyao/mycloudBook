@@ -1,0 +1,27 @@
+server:
+  port: 7002
+spring:
+  application:
+    name: licensingconsumer
+  profiles:
+    active:
+      default
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+  security:
+    enabled: false
+eureka:
+  instance:
+    instance-id: licensing-consumer-7001
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url:
+      defaultZone: http://www.eureka9001.com:9001/eureka/,
