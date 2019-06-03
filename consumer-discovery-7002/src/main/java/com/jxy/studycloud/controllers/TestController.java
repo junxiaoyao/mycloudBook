@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("test")
 public class TestController {
-  @Autowired
-  private RestTemplate restTemplate;
+  //注意必须new，否则会被ribbon拦截器拦截，改变URL行为
+  private RestTemplate restTemplate=new RestTemplate();
   @Autowired
   private ConsumerDiscoveryClient consumerDiscoveryClient;
   private final static String SERVICE_URL_PREFIX="http://LICENSINGSERVICE";
