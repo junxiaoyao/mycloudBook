@@ -32,7 +32,8 @@
     <module>licensing-service-8003</module>
     <module>emp-service-port6001</module>
     <module>consumer-discovery-7002</module>
-    <module>consumer-ribbon</module>
+    <module>consumer-ribbon-port7003</module>
+    <module>consumer-feign-port7004</module>
   </modules>
   <dependencyManagement>
 
