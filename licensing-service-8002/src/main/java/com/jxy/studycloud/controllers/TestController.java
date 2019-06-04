@@ -5,6 +5,7 @@ import com.jxy.studycloud.repository.EmpRepository;
 import com.jxy.studycloud.repository.LicenseRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,11 @@ public class TestController {
     return empRepository.findOne(id);
   }
   @RequestMapping("/getLicenseById")
-  public License getLicenseById(Long id){
+  public License getLicenseById(@RequestParam("id")Long id){
+    return licenseRepository.findOne(id);
+  }
+  @RequestMapping("/getLicenseById2/{id}")
+  public License getLicenseById2(@PathVariable("id")Long id){
     return licenseRepository.findOne(id);
   }
   @RequestMapping("/getAllEmp")
