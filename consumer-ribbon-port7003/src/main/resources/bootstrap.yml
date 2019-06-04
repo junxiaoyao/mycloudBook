@@ -1,5 +1,5 @@
 server:
-  port: 7002
+  port: 7003
 spring:
   application:
     name: licensingconsumer
@@ -18,10 +18,10 @@ management:
     enabled: false
 eureka:
   instance:
-    instance-id: licensing-consumer-7002
+    instance-id: licensing-consumer-7003
     prefer-ip-address: true
   client:
-    register-with-eureka: false
-    fetch-registry: true
+    register-with-eureka: true
+#    fetch-registry: true
     service-url:
       defaultZone: http://www.eureka9001.com:9001/eureka/,

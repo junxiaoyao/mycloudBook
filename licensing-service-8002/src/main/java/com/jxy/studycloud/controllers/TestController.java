@@ -6,6 +6,7 @@ import com.jxy.studycloud.repository.LicenseRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import  com.jxy.studycloud.services.*;
 import com.jxy.studycloud.model.*;
@@ -30,7 +31,7 @@ public class TestController {
     return config.getExampleProperty();
   }
   @RequestMapping("/getById")
-  public Emp getById(Long id){
+  public Emp getById(@RequestParam("id") Long id){
     return empRepository.findOne(id);
   }
   @RequestMapping("/getLicenseById")
