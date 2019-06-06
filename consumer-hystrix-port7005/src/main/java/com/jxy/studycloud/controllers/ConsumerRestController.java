@@ -1,5 +1,6 @@
 package com.jxy.studycloud.controllers;
 
+import com.jxy.studycloud.service.ServiceInterface;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import java.io.File;
@@ -25,13 +26,23 @@ public class ConsumerRestController {
 
   @Autowired
   private RestTemplate restTemplate;
+  @Autowired
+  private ServiceInterface serviceInterface;
   private final static String SERVICE_URL_PREFIX = "http://LICENSINGSERVICE";
 
   @RequestMapping("/getById")
+  @HystrixCommand(fallbackMethod ="getById2")
   public Emp getById(Long id) {
-    MultiValueMap<String, Object> paramMap = new LinkedMultiValueMap<String, Object>();
-    paramMap.add("id", id);
-    return restTemplate.postForObject(SERVICE_URL_PREFIX + "/test/getById", paramMap, Emp.class);
+    return serviceInterface.getById(id);
+//    MultiValueMap<String, Object> paramMap = new LinkedMultiValueMap<String, Object>();
+//    paramMap.add("id", id);
+//    return restTemplate.postForObject(SERVICE_URL_PREFIX + "/test/getById", paramMap, Emp.class);
+  }
+
+  public Emp getById2(Long id) {
+    Emp emp = new Emp();
+    emp.setName("i am feign HystrixCommand create");
+    return emp;
   }
 
   @RequestMapping("/getLicenseById")
@@ -52,17 +63,19 @@ public class ConsumerRestController {
     return restTemplate
         .getForObject(SERVICE_URL_PREFIX + "/test/getLicenseById2/{id}", License.class, id);
   }
+
   @RequestMapping("/getLicenseById3")
   @HystrixCommand(fallbackMethod = "getFaillicense")
   public License getLicenseById3(Long id) {
     if ((Math.random() * 3) > 2) {
-    throw new RuntimeException("s");
+      throw new RuntimeException("s");
     }
     return restTemplate
         .getForObject(SERVICE_URL_PREFIX + "/test/getLicenseById2/{id}", License.class, id);
   }
-  public License getFaillicense(Long id){
-    License license= new License();
+
+  public License getFaillicense(Long id) {
+    License license = new License();
     license.setLicenseType("wrong");
     license.setId(id);
     return license;
