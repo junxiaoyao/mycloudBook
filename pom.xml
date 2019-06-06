@@ -34,6 +34,7 @@
     <module>consumer-discovery-7002</module>
     <module>consumer-ribbon-port7003</module>
     <module>consumer-feign-port7004</module>
+    <module>consumer-hystrix-port7005</module>
   </modules>
   <dependencyManagement>
 
