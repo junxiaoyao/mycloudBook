@@ -34,3 +34,12 @@ zuul:
       path: /static/**
 #      映射地址
       url: http://127.0.0.1:8002
+    reststatic:
+      path: /rest/**
+      serviceId: restId
+reststatic:
+  ribbon:
+    listOfservers: http://127.0.0.1:8002,http://127.0.0.1:8003
+ribbon:
+  eureka:
+    enabled: false
