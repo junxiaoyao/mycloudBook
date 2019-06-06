@@ -35,6 +35,7 @@
     <module>consumer-ribbon-port7003</module>
     <module>consumer-feign-port7004</module>
     <module>consumer-hystrix-port7005</module>
+    <module>zuul-port9002</module>
   </modules>
   <dependencyManagement>
 

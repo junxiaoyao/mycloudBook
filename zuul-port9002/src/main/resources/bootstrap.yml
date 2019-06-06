@@ -1,0 +1,36 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: zuul
+  profiles:
+    active:
+      default
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+  security:
+    enabled: false
+eureka:
+  instance:
+    instance-id: zuul-9002
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://www.eureka9001.com:9001/eureka/,
+zuul:
+  ignore-local-service: false
+  routes:
+#    eureka服务名：映射地址
+    licensingservice: /api/**
+#    静态路由映射，即非eureka注册服务
+#    内部识别服务关键字
+    teststatic:
+#     静态路由
+      path: /static/**
+#      映射地址
+      url: http://127.0.0.1:8002
