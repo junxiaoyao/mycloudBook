@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,11 +21,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserContextFilter implements Filter {
 
+  @Value("${spring.application.name}")
+  private String applicationName;
   private static final Logger logger = LoggerFactory.getLogger(UserContextFilter.class);
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    logger.info("用户上下文过滤器初始化");
+    logger.info("用户上下文过滤器初始化 ----" + applicationName);
   }
 
   @Override
@@ -34,8 +36,9 @@ public class UserContextFilter implements Filter {
     HttpServletRequest httpServletRequest = (HttpServletRequest) request;
     String correlationId = httpServletRequest.getHeader(UserContext.CORRELATION_ID);
     UserContextHolder.getContext().setCorrelationId(correlationId);
-    logger.info("用户上下文过滤器退出，correlationId :{}"+correlationId);
-    chain.doFilter(request,response);
+    logger.info(
+        "用户上下文过滤器退出，correlationId :{}" + correlationId + "--------- project:" + applicationName);
+    chain.doFilter(request, response);
   }
 
   @Override
