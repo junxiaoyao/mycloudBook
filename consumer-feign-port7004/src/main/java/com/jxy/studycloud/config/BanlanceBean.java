@@ -1,7 +1,10 @@
 package com.jxy.studycloud.config;
 
+import com.jxy.studycloud.utils.UserContextInterceptor;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
+import java.util.Collections;
+import java.util.List;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +26,14 @@ public class BanlanceBean {
   @Bean
   @LoadBalanced
   public RestTemplate restTemplate() {
-    return new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
+    List interceptors = restTemplate.getInterceptors();
+    if (interceptors != null) {
+      interceptors.add(new UserContextInterceptor());
+      restTemplate.setInterceptors(interceptors);
+    } else {
+      restTemplate.setInterceptors(Collections.singletonList(new UserContextInterceptor()));
+    }
+    return restTemplate;
   }
 }

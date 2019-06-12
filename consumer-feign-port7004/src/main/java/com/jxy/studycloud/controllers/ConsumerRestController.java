@@ -19,6 +19,15 @@ public class ConsumerRestController {
   @Autowired
   private ServiceInterface serviceInterface;
 
+  @Autowired
+  private RestTemplate restTemplate;
+
+  @RequestMapping("/getByIdInRest")
+  public Emp getByIdInRest(Long id) {
+    return restTemplate.getForObject("http://zuul/api/licensing/test/getById?id="+id,Emp.class);
+  }
+
+
   @RequestMapping("/getById")
   public Emp getById(Long id) {
     return serviceInterface.getById(id);

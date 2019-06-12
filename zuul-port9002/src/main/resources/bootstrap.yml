@@ -26,20 +26,30 @@ zuul:
   ignore-local-service: false
   routes:
 #    eureka服务名：映射地址
-    licensingservice: /api/**
+    licensingservice: /api/licensing/**
 #    静态路由映射，即非eureka注册服务
-#    内部识别服务关键字
-    teststatic:
-#     静态路由
-      path: /static/**
-#      映射地址
-      url: http://127.0.0.1:8002
-    reststatic:
-      path: /rest/**
-      serviceId: restId
-reststatic:
-  ribbon:
-    listOfservers: http://127.0.0.1:8002,http://127.0.0.1:8003
-ribbon:
-  eureka:
-    enabled: false
+
+##    内部识别服务关键字
+#    teststatic:
+##     静态路由
+#      path: /static/**
+##      映射地址
+#      url: http://127.0.0.1:8002
+#    reststatic:
+#      path: /rest/**
+#      serviceId: restId
+#reststatic:
+#  ribbon:
+#    listOfservers: http://127.0.0.1:8002,http://127.0.0.1:8003
+#  禁用此项！！！
+#  Zuul无法缓存Eureka注册的服务，
+#  每次解析均去Eureka查询，
+#  将增加Eureka服务器的压力
+#ribbon:
+#  eureka:
+#    enabled: false
+#logging:
+#  level:
+#    com.netflix: WARN
+#    org.springframework.web: WARN
+#    com.thoughtmechanix: DEBUG
