@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @description
+ * @description 在调用服务之前执行的过滤器
  * @author: jxy
  * @create: 2019-06-12 10:03
  */
