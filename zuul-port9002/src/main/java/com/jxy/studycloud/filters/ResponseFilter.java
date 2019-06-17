@@ -47,14 +47,14 @@ public class ResponseFilter extends ZuulFilter {
     RequestContext requestContext = RequestContext.getCurrentContext();
     logger.info("后置过滤器，获取tmx-correlation-id: {},time: {}" + filterUtils.getCorrelationId(),
         Calendar.getInstance().getTime());
-    try {
-      InputStream stream = requestContext.getResponseDataStream();
-      String body = StreamUtils.copyToString(stream, Charset.forName("UTF-8"));
-      logger.info("后置过滤器，获取结果: {},time: {}" + body,
-          Calendar.getInstance().getTime());
-    }catch (IOException e){
-
-    }
+//    try {
+//      InputStream stream = requestContext.getResponseDataStream();
+//      String body = StreamUtils.copyToString(stream, Charset.forName("UTF-8"));
+//      logger.info("后置过滤器，获取结果: {},time: {}" + body,
+//          Calendar.getInstance().getTime());
+//    }catch (IOException e){
+//
+//    }
 
 
     requestContext.getResponse()
