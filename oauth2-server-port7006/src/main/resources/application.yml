@@ -1,0 +1,19 @@
+#Setting the logging levels for the service
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.thoughtmechanix: DEBUG
+
+eureka:
+  instance:
+    instance-id: zuul-9002
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://www.eureka9001.com:9001/eureka/,
+
+server:
+  contextPath:   /auth

@@ -36,8 +36,8 @@
     <module>consumer-feign-port7004</module>
     <module>consumer-hystrix-port7005</module>
     <module>zuul-port9002</module>
-    <module>mycloud-usercontext</module>
     <module>licensing-service-8004</module>
+      <module>oauth2-server-port7006</module>
   </modules>
   <dependencyManagement>
 
