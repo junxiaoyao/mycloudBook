@@ -2,7 +2,6 @@ package com.jxy.studycloud.controllers;
 import com.jxy.studycloud.config.ConsumerDiscoveryClient;
 import java.util.HashMap;
 import java.util.List;
-import javax.xml.ws.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +18,9 @@ import org.springframework.web.client.RestTemplate;
 public class TestController {
   //注意必须new，否则会被ribbon拦截器拦截，改变URL行为
   private RestTemplate restTemplate=new RestTemplate();
+
+  @Autowired
+  private RestTemplate restTemplate2;
   @Autowired
   private ConsumerDiscoveryClient consumerDiscoveryClient;
   private final static String SERVICE_URL_PREFIX="http://LICENSINGSERVICE";
