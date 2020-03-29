@@ -16,13 +16,14 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class BanlanceBean {
 
+  //指明负载均衡算法
   @Bean
   public IRule iRule() {
     return new RoundRobinRule();
   }
 
   @Bean
-  @LoadBalanced
+  @LoadBalanced //告诉Spring创建一个支持Ribbon负载均衡的RestTemplate
   public RestTemplate restTemplate() {
     return new RestTemplate();
   }

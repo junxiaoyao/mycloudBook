@@ -36,7 +36,9 @@ public class TestController {
 
   @RequestMapping("/getById")
   public Emp getById(@RequestParam("id") Long id) {
-    return empRepository.findOne(id);
+    Emp emp=empRepository.findOne(id);
+    emp.setName("我是LicenseServer2");
+    return emp;
   }
 
   @RequestMapping("/getLicenseById")
