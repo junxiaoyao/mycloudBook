@@ -21,12 +21,19 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://www.eureka9001.com:9001/eureka/,
+      defaultZone: http://127.0.0.1:9001/eureka/,
 zuul:
   ignore-local-service: false
   routes:
 #    eureka服务名：映射地址
-    licensingservice: /api/licensing/**
+    licensingservice: /user/licensing/**
+#    lincensing服务静态映射
+    lincensingStatic:
+      path: /static/**
+      url: http://127.0.0.1:8004
+  prefix: /api
+
+
 #    静态路由映射，即非eureka注册服务
 
 ##    内部识别服务关键字

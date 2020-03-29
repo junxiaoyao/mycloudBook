@@ -7,7 +7,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @RefreshScope
-@EnableEurekaClient
+//不注册到Eureka
+//@EnableEurekaClient
 public class LicenseApplication_8004 {
     public static void main(String[] args) {
         SpringApplication.run(LicenseApplication_8004.class, args);
