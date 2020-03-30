@@ -17,12 +17,16 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -31,6 +35,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @description
@@ -40,10 +45,13 @@ import java.util.Map;
 @Component
 public class RoutesFilter extends ZuulFilter {
 
-    private static final int FILTR_ORDER = 1;
+    private static final int FILTER_ORDER = 1;
     private static final boolean SHOULD_FILTER = true;
+    private static final Logger logger = LoggerFactory.getLogger(ZuulFilter.class);
     @Autowired
     private FilterUtils filterUtils;
+    @Autowired
+    private RestTemplate restTemplate;
     private ProxyRequestHelper helper = new ProxyRequestHelper();
 
     @Override
@@ -53,7 +61,7 @@ public class RoutesFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return FILTR_ORDER;
+        return FILTER_ORDER;
     }
 
     @Override
@@ -63,11 +71,36 @@ public class RoutesFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        RequestContext requestContext = RequestContext.getCurrentContext();
-        System.out.println(filterUtils.getServiceId());
+        RequestContext context = RequestContext.getCurrentContext();
+        logger.info("请求serviceId：" + filterUtils.getServiceId());
+//        AbTestingRoute abTestingRoute=get
+        Random random = new Random();
+        int v = random.nextInt(10);
+        //转发
+        if (v > 3) {
+            String route = buildRouteString(context.getRequest().getRequestURL().toString(),
+                    "Http://127.0.0.1:8004", context.get("serviceId").toString());
+            forworadToSpecialRouter(route);
+        }
+
         return null;
     }
 
+    private String buildRouteString(String oldEndpoint, String newEndpoint, String serviceName) {
+        int index = oldEndpoint.indexOf(serviceName);
+
+        String strippedRoute = oldEndpoint.substring(index + serviceName.length());
+        System.out.println("Target route: " + String.format("%s/%s", newEndpoint, strippedRoute));
+        return String.format("%s/%s", newEndpoint, strippedRoute);
+    }
+
+    //AbTestingRoute
+//    private AbTestingRoute getAbTestingRoute(String serviceName){
+//        ResponseEntity<AbTestingRoute> responseEntity=null;
+//        try {
+//            responseEntity=restTemplate.exchange()
+//        }
+//    }
     private void forworadToSpecialRouter(String route) {
         RequestContext requestContext = RequestContext.getCurrentContext();
         HttpServletRequest request = requestContext.getRequest();
@@ -82,7 +115,7 @@ public class RoutesFilter extends ZuulFilter {
         HttpResponse response = null;
         try {
             httpClient = HttpClients.createDefault();
-           httpClient  = HttpClients.createDefault();
+            httpClient = HttpClients.createDefault();
             response = forward(httpClient, verb, route, request, headers,
                     params, requestEntity);
             setResponse(response);

@@ -20,7 +20,7 @@ import org.springframework.util.StreamUtils;
 @Component
 public class ResponseFilter extends ZuulFilter {
 
-  private static final int FILTR_ORDER = 1;
+  private static final int FILTER_ORDER = 1;
   private static final boolean SHOULD_FILTER = true;
   private static final Logger logger = LoggerFactory.getLogger(ResponseFilter.class);
   @Autowired
@@ -33,7 +33,7 @@ public class ResponseFilter extends ZuulFilter {
 
   @Override
   public int filterOrder() {
-    return FILTR_ORDER;
+    return FILTER_ORDER;
   }
 
   @Override
