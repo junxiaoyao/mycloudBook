@@ -7,13 +7,13 @@ logging:
 
 eureka:
   instance:
-    instance-id: zuul-9002
+    instance-id: oauth2-server-7006
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://www.eureka9001.com:9001/eureka/,
+      defaultZone: http://127.0.0.1:9001/eureka/,
 
 server:
   contextPath:   /auth
