@@ -16,7 +16,6 @@ import java.util.List;
  * @Date: 2019/3/11 9:36
  * @Description:
  */
-@Service
 public class MyUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
