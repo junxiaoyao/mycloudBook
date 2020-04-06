@@ -14,7 +14,7 @@ import java.util.Map;
  * @Description:
  */
 @RestController
-public class OAuthoController {
+public class OAuth2Controller {
 
     @RequestMapping(value = "user", produces = "application/json")
     public Map<String, Object> user(OAuth2Authentication user) {
