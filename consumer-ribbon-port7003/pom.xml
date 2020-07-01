@@ -10,7 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
   <properties>
     <druidVersion>1.0.16</druidVersion>
-    <mysqlDriverVersion>8.0.13</mysqlDriverVersion>
+    <mysqlDriverVersion>8.0.16</mysqlDriverVersion>
   </properties>
   <artifactId>consumer-ribbon-port7003</artifactId>
   <dependencies>
